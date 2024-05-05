@@ -1,0 +1,22 @@
+.toast{
+    position: fixed;
+    top: 5em;
+    right: 1em;
+    background-color: #1b1b1bb7;
+    color: white;
+    font-weight: bold;
+    padding: 10px;
+    border-radius: 5px;
+}
+
+.toast--green{
+    background-color: #476e35b7;
+}
+
+.toast--yellow{
+    background-color: #7a7526b7;
+}
+
+.toast--red{
+    background-color: #722320b7;
+}

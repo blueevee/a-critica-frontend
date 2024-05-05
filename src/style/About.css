@@ -1,0 +1,25 @@
+.about-content {
+    display: flex;
+	justify-content: space-evenly;
+	align-content: center;
+  }
+
+.about-col-1 {
+    width: 35em;
+}
+
+.about-col-2 {
+    width: 20em;
+}
+
+.leo-sam{
+    margin-top: 5em;
+    height: 20em;
+}
+.photos{
+    display: flex;
+    justify-content: space-between;
+}
+.col1-sam{
+    height: 20em;
+}

@@ -1,0 +1,154 @@
+.sep-decor{
+    padding-top: 2em;
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: center;
+}
+
+.sep-line {
+    background-color: #75503696;
+    width: 35em;
+    height: 3px;
+}
+
+.sep-decor img {
+    height: 3em;
+}
+
+.review-form{
+    /* background-color: aqua; */
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+}
+
+.review-form .col-1{
+    /* background-color: rgb(207, 156, 17); */
+    display: flex;
+    flex-direction: column;
+    max-width: 25em;
+    justify-content: space-between;
+    margin-right: 1em;
+}
+
+.review-form .col-2{
+    /* background-color: rgb(43, 255, 0); */
+    display: flex;
+    flex-direction: column;
+    min-width: 30em;
+    margin-right: 1em;
+
+}
+
+.review-form .col-2 input{
+    margin-top: 2em;
+    min-width: 30em;
+    height: 3em;
+    width: 100%;
+    border: none;
+    background-color: #c6a67f6e;
+    color: #6d4c2d;
+    box-sizing: border-box;
+    outline: none;
+    border-radius: 5px;
+    font-size: 1em;
+}
+
+.review-form .col-2 textarea{
+    margin-top: 1em;
+    width: 100%;
+    height: 10em;
+    resize: none;
+    border: none;
+    outline: none;
+    background-color: #c6a67f6e;
+    color: #6d4c2d;
+    font-size: 100%;
+    box-sizing: border-box;
+    border-radius: 5px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+
+.named-field{
+    display: flex;
+    flex-direction: column;
+}
+
+.named-field p{
+    font-weight: bold;
+    display: flex;
+}
+.named-field p img{
+    margin-right: 3px;
+}
+.col-1 button:hover, .col-1 button:focus-visible{
+    background: #815e3e77 !important;
+}
+.col-1 .rdp-day_selected{
+    background: #503720ab !important;
+}
+.col-2 .add-review{
+    font-family: "Roboto", sans-serif;
+    text-transform: uppercase;
+    outline: 0;
+    background: #79532f;
+    width: 100%;
+    border: 0;
+    padding: 1em;
+    color: #cfc8a6;
+    font-weight: bold;
+    letter-spacing: 2px;
+    font-size: 12px;
+    -webkit-transition: all 0.3 ease;
+    border-radius: 5px;
+    transition: all 0.3 ease;
+    cursor: pointer;
+    margin-top: 1em;
+}
+
+.col-2 .add-review:hover, .col-2 .add-review:active, .col-2 .add-review:focus {
+    background: #503720;
+}
+
+.col-3{
+    display: flex;
+    flex-direction: column;
+    max-width: 20em;
+}
+
+.upload-area {
+    border: 2px dashed #79532f;
+    background-color: #f0e7c1;
+    width: 100%;
+    height: 12em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.upload-area p{
+    margin-left: 1em;
+    max-width: 15em;
+  }
+
+.upload-area.active {
+    border: 2px solid #503720;
+}
+
+.preview-upload{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: flex-start;
+    align-content: space-between;
+    height: auto;
+  }
+.preview-upload img {
+    width: 5em;
+    height: 5em;
+    object-fit: cover;
+    margin: 2px;
+  }

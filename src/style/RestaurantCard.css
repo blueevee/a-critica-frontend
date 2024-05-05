@@ -1,0 +1,91 @@
+.restaurant-card{
+    text-decoration: none;
+    color: inherit;
+    background-color: #FFF7D2;
+    max-width: 25em;
+    min-height: 10em;
+    padding: 1em;
+    border: 1px solid #94673E;
+    margin-bottom: 2em;
+    border-radius: 1em;
+
+}
+
+.header-img{
+  margin-top: 1em;
+  height: 6em;
+  width: 7em;
+  background-color: #d19b69f1;
+}
+
+.content{
+  display: flex;
+  justify-content: space-between;
+	flex-wrap: nowrap;
+}
+
+.restaurant-info{
+  width: 18em;
+  margin-right: 1em;
+}
+
+.restaurant-info h3{
+  margin: 0;
+  font-size: 2em;
+}
+
+.restaurant-info p{
+  margin: 0;
+  display: flex;
+  font-size: 1em;
+  color: #94683ee7;
+  display: flex;
+}
+
+.restaurant-info span{
+  font-weight: bold;
+}
+
+.restaurant-info img{
+  max-height: 2em;
+}
+
+.category-tags{
+  margin-top: 1%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.category-label{
+  background-color: #94683ef1;
+  color: #FFF7D2;
+  padding: 1% 4%;
+  border-radius: 25px;
+  margin: 1% auto;
+}
+
+.restaurant-card:hover {
+  background-color: #94673E;
+  color:#FFF7D2;
+  cursor: pointer;
+}
+
+.restaurant-card:hover .category-label{
+  color: #94673E;
+}
+
+.give-btn{
+  width: 100%;
+  color: white;
+  padding: 0.7rem;
+  font-size: 1em;
+  border: none;
+  border-radius: 8rem;
+  cursor: pointer;
+  font-weight: bold;
+  background-color: #4CAF50;
+}
+.give-btn:hover {
+  background-color: #45a049;
+}

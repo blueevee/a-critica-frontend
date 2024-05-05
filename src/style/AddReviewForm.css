@@ -1,0 +1,24 @@
+.submit-button {
+    font-family: "Roboto", sans-serif;
+    text-transform: uppercase;
+    outline: 0;
+    background: #79532f;
+    width: 50%;
+    border: 0;
+    padding: 1em;
+    color: #cfc8a6;
+    font-weight: bold;
+    letter-spacing: 2px;
+    font-size: 12px;
+    -webkit-transition: all 0.3 ease;
+    border-radius: 5px;
+    transition: all 0.3 ease;
+    cursor: pointer;
+    margin-top: 1em;
+    margin-left: 25%;
+    margin-right: 25%;
+}
+
+.submit-button:hover, .submit-button:active, .submit-button:focus {
+    background: #503720;
+  }

@@ -1,0 +1,36 @@
+.restaurant-review-info{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    border-radius: 10px;
+}
+
+.restaurant-review-info > div:nth-of-type(1){
+    background-color: #d8b66ce1;
+    width: 50%;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+}
+
+.restaurant-review-info h1{
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+.restaurant-review-info p{
+    margin-top: 0;
+    display: flex;
+    justify-content:center;
+}
+
+.restaurant-review-info .category-tags{
+    margin-bottom: 1em;
+}
+
+.restaurant-img{
+    margin-top: 1em;
+    margin-left: 2em;
+    height: 9em;
+    width: 15em;
+    background-color: #d19b69f1;
+}

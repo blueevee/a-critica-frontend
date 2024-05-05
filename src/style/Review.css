@@ -1,0 +1,36 @@
+.review-card{
+    margin-top: 1em;
+    border-top: #503720a2 1px solid;
+    display: flex;
+}
+
+.review-col-1{
+    max-width: 10em;
+    background-color: green;
+}
+
+.review-col-2{
+    margin-left: 2em;
+    max-width: 40em;
+    background-color: purple;
+}
+
+.review-col-3{
+    margin-top: 1em;
+    margin-left: 1em;
+    background-color: #503720;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.review-image img {
+    width: 5em;
+    height: 5em;
+    object-fit: cover;
+    margin: 2px;
+  }
+
+.star-rating {
+    font-size: 20px;
+    color: yellow;
+}
