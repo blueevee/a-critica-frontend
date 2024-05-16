@@ -27,8 +27,8 @@ const CardDetails: React.FC = () => {
     reviews:[{
       visit_date: new Date(12/12/12).toISOString(),
       // visit_date: "2024-05-01T03:00:00.000Z",
-      username: "aaa",
-      comment: "ballabalbalbalabalabla",
+      username: "florizha aaa",
+      comment: "ballabalb uffuhewf dhbefhf fewuhfuhefw efwuihewfuihewf ewfuihewfiuewf fweuhewfiuewf efwuiewfhiuhewf efwiuhewfuihewfui efwiuewfhiuhewfuifw fiehrfuhre efuirfufeu fruihrfuih ufhercfuhr rufrefuhfr ruherfuihrf rfuhrefuifhr rfhreuihfr rfuduihdfifri rfiuheriuhrigr brgirg birgirg rgiurgirguieg \nfehbehbfrhrbhrhb vueiurvuib\nalbalabala\nbla",
       rating: 2,
       images: [
           "https://s2-techtudo.glbimg.com/SSAPhiaAy_zLTOu3Tr3ZKu2H5vg=/0x0:1024x609/888x0/smart/filters:strip_icc()/i.s3.glbimg.com/v1/AUTH_08fbf48bc0524877943fe86e43087e7a/internal_photos/bs/2022/c/u/15eppqSmeTdHkoAKM0Uw/dall-e-2.jpg",
@@ -36,7 +36,7 @@ const CardDetails: React.FC = () => {
       ],
       bill:[
         {
-          "item": "bla ba",
+          "item": "bla ba ba ba 33333333eeeebbbbbbbba",
           "amount": 2,
           "price": 12.04
         },
@@ -50,7 +50,7 @@ const CardDetails: React.FC = () => {
       {
         visit_date: new Date().toISOString(),
         // visit_date: "2024-05-04T03:00:00.000Z",
-        username: "bbbb",
+        username: "florzinho capoeiro",
         comment: "bbbbbbbbbbbbbb vvvvvvvvvveerb eererere erreerreerreer",
         rating: 9.5,
         images: [

@@ -30,8 +30,26 @@ const Review: React.FC<ReviewInterface> = ({review}) => {
             </div>
             <div className='review-col-2'>
                 <StarRating rating={review.rating}/>
-                <p>{review.username}</p>
                 <p>{review.comment}</p>
+                <h3>Conta detalhada</h3>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th></th>
+                                <th>Item</th>
+                                <th>Preço</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {review.bill?.map((item, index) => (
+                                <tr key={index}>
+                                    <td>{item.amount} x</td>
+                                    <td>{item.item}</td>
+                                    <td>R${item.price}</td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
             </div>
             <div className='review-col-3'>
                 {review.images?.map((image, index) => (
@@ -44,7 +62,7 @@ const Review: React.FC<ReviewInterface> = ({review}) => {
                 onRequestClose={closeModal}
                 contentLabel="Imagem selecionada"
                 >
-                    <button onClick={closeModal}>X</button>
+                    <button onClick={closeModal}>Fechar</button>
                     <img src={selectedImage} alt="Imagem selecionada" />
                 </Modal>
             </div>
