@@ -18,16 +18,16 @@ const CardDetails: React.FC = () => {
 
   const restaurantReviewDetails: ReviewProps = {
     restaurant:{
-      adress:"rua jogo aa do numa 123, 333",
-      category: ["pizza", "italiana", "francesa", "drinks"],
+      address:"rua jogo aa do numa 123, 333",
+      cuisines: ["pizza", "italiana", "francesa", "drinks"],
       id: 1,
-      image_url: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRkt9q5n4-l2V9l_v2qteSN9rOF1KMkkW_eR3vlfooYGg&s",
+      background_image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRkt9q5n4-l2V9l_v2qteSN9rOF1KMkkW_eR3vlfooYGg&s",
       name: "Pecorino"
     },
     reviews:[{
       visit_date: new Date(12/12/12).toISOString(),
       // visit_date: "2024-05-01T03:00:00.000Z",
-      username: "florizha aaa",
+      pseudonym: "florizha aaa",
       comment: "ballabalb uffuhewf dhbefhf fewuhfuhefw efwuihewfuihewf ewfuihewfiuewf fweuhewfiuewf efwuiewfhiuhewf efwiuhewfuihewfui efwiuewfhiuhewfuifw fiehrfuhre efuirfufeu fruihrfuih ufhercfuhr rufrefuhfr ruherfuihrf rfuhrefuifhr rfhreuihfr rfuduihdfifri rfiuheriuhrigr brgirg birgirg rgiurgirguieg \nfehbehbfrhrbhrhb vueiurvuib\nalbalabala\nbla",
       rating: 2,
       images: [
@@ -36,21 +36,21 @@ const CardDetails: React.FC = () => {
       ],
       bill:[
         {
-          "item": "bla ba ba ba 33333333eeeebbbbbbbba",
-          "amount": 2,
-          "price": 12.04
+          item_description: "bla ba ba ba 33333333eeeebbbbbbbba",
+          amount: 2,
+          price: 12.04
         },
         {
-          "item": "aaaaaaaba",
-          "amount": 1,
-          "price": 122.04
+          item_description: "aaaaaaaba",
+          amount: 1,
+          price: 122.04
         },
       ]
     },
       {
         visit_date: new Date().toISOString(),
         // visit_date: "2024-05-04T03:00:00.000Z",
-        username: "florzinho capoeiro",
+        pseudonym: "florzinho capoeiro",
         comment: "bbbbbbbbbbbbbb vvvvvvvvvveerb eererere erreerreerreer",
         rating: 9.5,
         images: [
@@ -62,14 +62,14 @@ const CardDetails: React.FC = () => {
         ],
         bill:[
           {
-            "item": "bla ba",
-            "amount": 2,
-            "price": 12.04
+            item_description: "bla ba ba ba 33333333eeeebbbbbbbba",
+            amount: 2,
+            price: 12.04
           },
           {
-            "item": "aaaaaaaba",
-            "amount": 1,
-            "price": 122.04
+            item_description: "aaaaaaaba",
+            amount: 1,
+            price: 122.04
           },
         ]
       }
@@ -83,15 +83,15 @@ if (!restaurantReviewDetails) {
   return (
     <div>
       <div className='restaurant-review-info' style={{
-          backgroundImage: `url(${restaurantReviewDetails.restaurant.image_url})`,
+          backgroundImage: `url(${restaurantReviewDetails.restaurant.background_image})`,
           backgroundSize: 'cover',
           backgroundRepeat: 'no-repeat'
         }}>
           <div>
             <h1>{restaurantReviewDetails.restaurant.name} {id}</h1>
-            <p><img src={location} alt='location pin'/> {restaurantReviewDetails.restaurant.adress}</p>
+            <p><img src={location} alt='location pin'/> {restaurantReviewDetails.restaurant.address}</p>
             <div className='category-tags'>
-              {restaurantReviewDetails.restaurant.category.map((category: string, index: number) => (
+              {restaurantReviewDetails.restaurant.cuisines.map((category: string, index: number) => (
                 <p className='category-label' key={index}>{category}</p>
               ))}
             </div>

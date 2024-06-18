@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 import { Restaurant} from '../interfaces/RestaurantInterface'
 import { Review, ReviewProps } from '../interfaces/ReviewInterface';
 import RestaurantForm from '../components/RestaurantForm'
@@ -13,21 +14,17 @@ const AddReview: React.FC = () => {
   const [reviews, setReviews] = useState<Review[]>([]);
   const [toastVisible, setToastVisible] = useState(false);
   const [IncompleteDataToastVisible, setIncompleteDataToastVisible] = useState(false);
+  const [PostErrrorToastVisible, setPostErrrorToastVisible] = useState(false);
 
   const handleRestaurantSubmit = (restaurant: Restaurant) => {
 
-    // const review: ReviewProps = {
-    //   restaurant: restaurant,
-    // }
     setRestaurant(restaurant);
-    console.log("ADD RESTAURANNTTT")
-    // Aqui você pode concatenar os dados deste formulário com os dados de outro formulário
-    // E então enviar todos os dados para a API
+    // console.log("ADD RESTAURANNTTT")
   };
 
   const handleReviewSubmit = (review: Review) => {
     setReviews([...reviews, review]);
-    console.log("ADD REVIEWW")
+    // console.log("ADD REVIEWW")
   };
 
   const handleSubmit = () => {
@@ -36,8 +33,23 @@ const AddReview: React.FC = () => {
         restaurant: restaurant,
         reviews: reviews,
       }
+      console.log(`URL DO BACK:    ${import.meta.env.VITE_API_BASE_URL}/new_review`)
       console.log("REVIEW PARA ENVIAR AO BACK", review)
-      setToastVisible(true);
+      axios.post(`${import.meta.env.VITE_API_BASE_URL}/new_review`, review)
+        .then(() => {
+          console.log("ENVIOUUU");
+          setToastVisible(true);
+        })
+        .catch((error) => {
+          console.error('ERROOOO:', error);
+          setPostErrrorToastVisible(true);
+        });
+      // try{
+        // await axios.post(`${import.meta.env.VITE_API_BASE_URL}/new_review`, review);
+      // }catch(error){
+        // console.log("ERROOOO", error)
+
+      // }
     } else{
       setIncompleteDataToastVisible(true);
     }
@@ -51,6 +63,12 @@ const AddReview: React.FC = () => {
                 isVisible={toastVisible}
                 hideToast={() => setToastVisible(false)}
                 className='toast--green'
+            />
+        <Toast
+                message="Ocorreu um erro ao salvar a crítica, tente novamente mais tarde."
+                isVisible={PostErrrorToastVisible}
+                hideToast={() => setPostErrrorToastVisible(false)}
+                className='toast--red'
             />
         <Toast
                 message="Você deve preencher no mínimo 1 comentário por restaurante confirmado."

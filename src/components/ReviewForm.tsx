@@ -1,7 +1,7 @@
 import React, { useState, useCallback } from 'react';
 import { format } from 'date-fns';
 import { DayPicker } from 'react-day-picker';
-import { Review } from '../interfaces/ReviewInterface'
+import { Review, ItemBill} from '../interfaces/ReviewInterface'
 import { ptBR } from 'date-fns/locale';
 import { useDropzone } from 'react-dropzone';
 import { Toast } from './Toast';
@@ -11,12 +11,13 @@ import 'react-day-picker/dist/style.css';
 import '../style/ReviewForm.css'
 
 const ReviewForm: React.FC<{ onSubmit: (data: Review) => void }> = ({ onSubmit }) => {
-    const [username, setUsername] = useState('');
+    const [pseudonym, setPseudonym] = useState('');
     const [rating, setRating] = useState(0);
     const [comment, setComment] = useState('');
     const [visitDate, setVisitDate] = useState<Date>();
     const [imagePreview, setImagePreview] = useState<Array<string | ArrayBuffer | null>>([]);
     const [toastVisible, setToastVisible] = useState(false);
+    const [bill, setBill] = useState<Array<ItemBill>>([]);
     const [files, setFiles] = useState<Array<string>>([]);
 
   const onDrop = useCallback((acceptedFiles: Array<File>) => {
@@ -61,13 +62,13 @@ const ReviewForm: React.FC<{ onSubmit: (data: Review) => void }> = ({ onSubmit }
     if (visitDate !== undefined){
         formatedDate = visitDate.toISOString();
     }
-    const newReview: Review = { username, rating, comment, visit_date: formatedDate, images: files};
-    // setReview(newReview);
-    setUsername('');
+    const newReview: Review = { pseudonym, rating, comment, visit_date: formatedDate, images: files};
+    setPseudonym('');
     setRating(0);
     setComment('');
     setVisitDate(new Date());
     setToastVisible(true);
+    setImagePreview([])
     onSubmit(newReview);
   };
 
@@ -132,7 +133,7 @@ const ReviewForm: React.FC<{ onSubmit: (data: Review) => void }> = ({ onSubmit }
             </div>
             <div className='col-2'>
                 <label>
-                    <input type="text" value={username} required onChange={(e) => setUsername(e.target.value)} placeholder="Um codenome pro dono dessa crítica..." />
+                    <input type="text" value={pseudonym} required onChange={(e) => setPseudonym(e.target.value)} placeholder="Um codenome pro dono dessa crítica..." />
                 </label>
                 <label>
                     <textarea value={comment} required onChange={(e) => setComment(e.target.value)} placeholder="Como foi sua visita?" />

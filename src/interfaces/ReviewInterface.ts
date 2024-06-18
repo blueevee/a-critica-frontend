@@ -1,14 +1,14 @@
 import { Restaurant} from './RestaurantInterface'
 
 export interface ItemBill{
-    item: string;
+    item_description: string;
     amount: number;
     price: number;
 }
 
 export interface Review{
     visit_date: string;
-    username: string;
+    pseudonym: string;
     comment: string;
     rating: number;
     images?: string[];

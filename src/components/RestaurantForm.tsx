@@ -15,12 +15,12 @@ const delimiters = [KeyCodes.comma, KeyCodes.enter];
 
 const RestaurantForm: React.FC<{ onSubmit: (data: Restaurant) => void }> = ({ onSubmit }) => {
   const [restaurants, setRestaurants] = useState<Restaurant[]>([]);
-  const [cuisines, setCuisines] = useState<string[]>([]);
+  const [allCuisines, setAllCuisines] = useState<string[]>([]);
   const [selectedRestaurant, setSelectedRestaurant] = useState<Restaurant | null>(null);
   const [name, setName] = useState('');
-  const [adress, setAdress] = useState('');
+  const [address, setaddress] = useState('');
   const [imageUrl, setImageUrl] = useState('');
-  const [category, setCategory] = useState<{ id: string; text: string }[]>([]);
+  const [cuisines, setCuisines] = useState<{ id: string; text: string }[]>([]);
   const [toastVisible, setToastVisible] = useState(false);
 
   useEffect(() => {
@@ -30,62 +30,62 @@ const RestaurantForm: React.FC<{ onSubmit: (data: Restaurant) => void }> = ({ on
         {
           id: 1,
           name: "Piqueta de cartoe ke",
-          adress: "rua boulebardc aaaaaaaa aaaaaaaaaa aaaaaaaaa aaaaaaa aaaaaaaaaa aaaaaaa",
-          image_url: "https://freguesiacult.com.br/wp-content/uploads/restaurante-750x563.jpeg",
+          address: "rua boulebardc aaaaaaaa aaaaaaaaaa aaaaaaaaa aaaaaaa aaaaaaaaaa aaaaaaa",
+          background_image: "https://freguesiacult.com.br/wp-content/uploads/restaurante-750x563.jpeg",
           reviews: 2,
-          category: ['Italiana', 'Japonesa', 'Drinks', 'Pizza']
+          cuisines: ['Italiana', 'Japonesa', 'Drinks', 'Pizza']
         },
         {
           id: 2,
           name: "Piqueta",
-          image_url: "",
-          adress: "rua bouleaaaaaaaaaaaa 12 sssbardc",
+          background_image: "",
+          address: "rua bouleaaaaaaaaaaaa 12 sssbardc",
           reviews: 2,
-          category: ['Hamburguér', 'Drinks', 'Pizza']
+          cuisines: ['Hamburguér', 'Drinks', 'Pizza']
         },
         {
           id: 3,
           name: "Piqueta",
-          adress: "rua boulebardceeee eeeee",
+          address: "rua boulebardceeee eeeee",
           reviews: 2,
-          image_url: "",
-          category: ['Bolos', 'Drinks', 'Pizza']
+          background_image: "",
+          cuisines: ['Bolos', 'Drinks', 'Pizza']
         },
         {
           id: 4,
           name: "Piqueta sj djj eyy",
-          adress: "rua boulebardc",
-          image_url: "",
+          address: "rua boulebardc",
+          background_image: "",
           reviews: 2,
-          category: ['Drinks', 'Pizza']
+          cuisines: ['Drinks', 'Pizza']
         },
         {
           id: 5,
           name: "Piqueta",
-          adress: "rua boulebardc",
-          image_url: "https://img.restaurantguru.com/w550/h367/ra36-pizza-Sweet-pizza-val-2023-01.jpg",
+          address: "rua boulebardc",
+          background_image: "https://img.restaurantguru.com/w550/h367/ra36-pizza-Sweet-pizza-val-2023-01.jpg",
           reviews: 2,
-          category: ['Doces', 'Pizza']
+          cuisines: ['Doces', 'Pizza']
         },
         {
           id: 6,
           name: "Pecorino",
           reviews: 2,
-          adress: "rua boulebardc",
-          image_url: "",
-          category: ['Pizza']
+          address: "rua boulebardc",
+          background_image: "",
+          cuisines: ['Pizza']
         },
         {
           id: 7,
           name: "Pecorino",
           reviews: 212,
-          adress: "rua boulebardc",
-          image_url: "https://freguesiacult.com.br/wp-content/uploads/restaurante-750x563.jpeg",
-          category: ['Pizza']
+          address: "rua boulebardc",
+          background_image: "https://freguesiacult.com.br/wp-content/uploads/restaurante-750x563.jpeg",
+          cuisines: ['Pizza']
         }
       ];
 
-      const cuisines: string[] = [
+      const allCuisines: string[] = [
         'Pizza',
         'Pidamio',
         'Italiana',
@@ -93,9 +93,12 @@ const RestaurantForm: React.FC<{ onSubmit: (data: Restaurant) => void }> = ({ on
         'Japonesa',
         'Chinesa',
         'Árabe',
-        'Hambúrguer'
+        'Hambúrguer',
+        'Cafeteria',
+        'Contemporânea',
+        'Confeitaria'
       ]
-      setCuisines(cuisines)
+      setAllCuisines(allCuisines)
       setRestaurants(data)
     };
 
@@ -108,32 +111,32 @@ const RestaurantForm: React.FC<{ onSubmit: (data: Restaurant) => void }> = ({ on
         if (restaurant) {
           setSelectedRestaurant(restaurant);
           setName(restaurant.name);
-          setAdress(restaurant.adress);
-          setImageUrl(restaurant.image_url);
-          setCategory(restaurant.category.map(c => ({ id: c, text: c })));
+          setaddress(restaurant.address);
+          setImageUrl(restaurant.background_image);
+          setCuisines(restaurant.cuisines.map(c => ({ id: c, text: c })));
         } else {
           setSelectedRestaurant(null);
           setName(selectedOption.value);
-          setAdress('');
+          setaddress('');
           setImageUrl('');
-          setCategory([]);
+          setCuisines([]);
         }
     } else {
       setSelectedRestaurant(null);
       setName('');
-      setAdress('');
+      setaddress('');
       setImageUrl('');
-      setCategory([]);
+      setCuisines([]);
     }
   };
 
   const handleDeleteTag = (i: number) => {
-    setCategory(category.filter((tag, index) => index !== i));
+    setCuisines(cuisines.filter((tag, index) => index !== i));
   };
 
   const handleAddTag = (tag: { id: string; text: string }) => {
-    if (cuisines.includes(tag.text)) {
-        setCategory([...category, tag]);
+    if (allCuisines.includes(tag.text)) {
+        setCuisines([...cuisines, tag]);
     }
   };
 
@@ -144,11 +147,16 @@ const RestaurantForm: React.FC<{ onSubmit: (data: Restaurant) => void }> = ({ on
     onSubmit({
       id: selectedRestaurant ? selectedRestaurant.id : null,
       name,
-      adress,
-      image_url: imageUrl,
-      category: category.map(tag => tag.text),
+      address,
+      background_image: imageUrl,
+      cuisines: cuisines.map(tag => tag.text),
     });
     setToastVisible(true);
+    setSelectedRestaurant(null);
+    setName('');
+    setaddress('');
+    setImageUrl('');
+    setCuisines([]);
   };
 
   return (
@@ -204,10 +212,10 @@ const RestaurantForm: React.FC<{ onSubmit: (data: Restaurant) => void }> = ({ on
         <div className='new-restaurant'>
             <p>Ou, Cadastre um novo restaurante:</p>
             <input type="text" value={name} required onChange={e => setName(e.target.value)} placeholder="Nome do Restaurante" />
-            <input type="text" value={adress} required onChange={e => setAdress(e.target.value)} placeholder="Endereço" />
+            <input type="text" value={address} required onChange={e => setaddress(e.target.value)} placeholder="Endereço" />
             <input type="text" value={imageUrl} onChange={e => setImageUrl(e.target.value)} placeholder="URL de uma foto do lugar" />
             <ReactTags
-                tags={category}
+                tags={cuisines}
                 classNames={{
                     suggestions: 'custom-suggestions',
                     tagInput: 'custom-tagInput',
@@ -218,7 +226,7 @@ const RestaurantForm: React.FC<{ onSubmit: (data: Restaurant) => void }> = ({ on
                     remove: 'custom-remove',
                     activeSuggestion: 'custom-activeSuggestion'
                   }}
-                suggestions={cuisines.map(cuisine => ({ id: cuisine, text: cuisine }))}
+                suggestions={allCuisines.map(cuisine => ({ id: cuisine, text: cuisine }))}
                 handleDelete={handleDeleteTag}
                 handleAddition={handleAddTag}
                 delimiters={delimiters}

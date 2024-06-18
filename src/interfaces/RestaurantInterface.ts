@@ -1,19 +1,19 @@
 export interface Restaurant{
-  id: number;
+  id: number | null;
   name: string;
-  image_url: string;
-  adress: string;
-  category: string[];
+  background_image: string;
+  address: string;
+  cuisines: string[];
   reviews?: number;
 }
 
 export interface RestaurantCardProps {
     restaurant: {
-      id: number;
+      id: number | null;
       name: string;
-      image_url: string;
-      adress: string;
-      category: string[];
+      background_image: string;
+      address: string;
+      cuisines: string[];
       reviews?: number;
     }
 }
