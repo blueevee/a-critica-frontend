@@ -24,7 +24,6 @@
 }
 
 .review-form .col-1{
-    /* background-color: rgb(207, 156, 17); */
     display: flex;
     flex-direction: column;
     max-width: 25em;
@@ -33,15 +32,58 @@
 }
 
 .review-form .col-2{
-    /* background-color: rgb(43, 255, 0); */
     display: flex;
     flex-direction: column;
     min-width: 30em;
     margin-right: 1em;
+    max-width: 60em;
 
 }
 
+.review-form .col-2 .col-bill-itens{
+    margin-left: 5em;
+    max-width: 30%;
+    display: flex;
+    flex-direction: column;
+
+}
+
+.review-form .col-2 .col-bill-itens input{
+    padding-left: 1em;
+    margin-top: 1em;
+    border: none;
+    max-width: 100%;
+    box-sizing: border-box !important;
+    background-color: #c6a67f6e;
+    color: #6d4c2d;
+    outline: none;
+    border-radius: 5px;
+    font-size: .8em;
+}
+
+.review-form .col-2 .col-bill-itens .add-item{
+    font-family: "Roboto", sans-serif;
+    margin-top: 1em;
+    border: none;
+    min-width: 10em;
+    text-transform: uppercase;
+    font-size: .8em;
+    background: #79532f;
+    padding: .5em;
+    color: #cfc8a6;
+    font-weight: bold;
+    letter-spacing: 1px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-left: 50%;
+}
+
+.add-item:hover, .add-item:focus {
+    background: #503720;
+  }
+
 .review-form .col-2 input{
+    padding-left: .5em;
     margin-top: 2em;
     min-width: 30em;
     height: 3em;
@@ -56,6 +98,8 @@
 }
 
 .review-form .col-2 textarea{
+    padding-top: .5em;
+    padding-left: .5em;
     margin-top: 1em;
     width: 100%;
     height: 10em;
@@ -83,7 +127,7 @@
 .named-field p img{
     margin-right: 3px;
 }
-.col-1 button:hover, .col-1 button:focus-visible{
+.col-1 button:hover{
     background: #815e3e77 !important;
 }
 .col-1 .rdp-day_selected{
@@ -108,7 +152,7 @@
     margin-top: 1em;
 }
 
-.col-2 .add-review:hover, .col-2 .add-review:active, .col-2 .add-review:focus {
+.col-2 .add-review:hover {
     background: #503720;
 }
 

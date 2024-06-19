@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import Select from 'react-select';
-import { Restaurant} from '../interfaces/RestaurantInterface'
+import { Restaurant, Cuisine} from '../interfaces/RestaurantInterface'
 import { WithContext as ReactTags } from 'react-tag-input';
 import { Toast } from '../components/Toast';
 import '../style/RestaurantForm.css'
@@ -25,87 +26,101 @@ const RestaurantForm: React.FC<{ onSubmit: (data: Restaurant) => void }> = ({ on
 
   useEffect(() => {
     const fetchRestaurants = async () => {
-      // Aqui você faria a chamada à API para buscar os restaurantes
-      const data: Restaurant[] = [
-        {
-          id: 1,
-          name: "Piqueta de cartoe ke",
-          address: "rua boulebardc aaaaaaaa aaaaaaaaaa aaaaaaaaa aaaaaaa aaaaaaaaaa aaaaaaa",
-          background_image: "https://freguesiacult.com.br/wp-content/uploads/restaurante-750x563.jpeg",
-          reviews: 2,
-          cuisines: ['Italiana', 'Japonesa', 'Drinks', 'Pizza']
-        },
-        {
-          id: 2,
-          name: "Piqueta",
-          background_image: "",
-          address: "rua bouleaaaaaaaaaaaa 12 sssbardc",
-          reviews: 2,
-          cuisines: ['Hamburguér', 'Drinks', 'Pizza']
-        },
-        {
-          id: 3,
-          name: "Piqueta",
-          address: "rua boulebardceeee eeeee",
-          reviews: 2,
-          background_image: "",
-          cuisines: ['Bolos', 'Drinks', 'Pizza']
-        },
-        {
-          id: 4,
-          name: "Piqueta sj djj eyy",
-          address: "rua boulebardc",
-          background_image: "",
-          reviews: 2,
-          cuisines: ['Drinks', 'Pizza']
-        },
-        {
-          id: 5,
-          name: "Piqueta",
-          address: "rua boulebardc",
-          background_image: "https://img.restaurantguru.com/w550/h367/ra36-pizza-Sweet-pizza-val-2023-01.jpg",
-          reviews: 2,
-          cuisines: ['Doces', 'Pizza']
-        },
-        {
-          id: 6,
-          name: "Pecorino",
-          reviews: 2,
-          address: "rua boulebardc",
-          background_image: "",
-          cuisines: ['Pizza']
-        },
-        {
-          id: 7,
-          name: "Pecorino",
-          reviews: 212,
-          address: "rua boulebardc",
-          background_image: "https://freguesiacult.com.br/wp-content/uploads/restaurante-750x563.jpeg",
-          cuisines: ['Pizza']
-        }
-      ];
+      axios
+        .get(`${import.meta.env.VITE_API_BASE_URL}/restaurants`)
+        .then((response) => {
+          setRestaurants(response.data)
+        })
+        .catch((error) => {
+          console.log(error);
+        });
 
-      const allCuisines: string[] = [
-        'Pizza',
-        'Pidamio',
-        'Italiana',
-        'Francesa',
-        'Japonesa',
-        'Chinesa',
-        'Árabe',
-        'Hambúrguer',
-        'Cafeteria',
-        'Contemporânea',
-        'Confeitaria'
-      ]
-      setAllCuisines(allCuisines)
-      setRestaurants(data)
+      axios
+        .get(`${import.meta.env.VITE_API_BASE_URL}/cuisines`)
+        .then((response) => {
+          setAllCuisines(response.data.map((cuisine: Cuisine) => (cuisine.cuisine_name)))
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+      // const data: Restaurant[] = [
+      //   {
+      //     id: 1,
+      //     name: "Piqueta de cartoe ke",
+      //     address: "rua boulebardc aaaaaaaa aaaaaaaaaa aaaaaaaaa aaaaaaa aaaaaaaaaa aaaaaaa",
+      //     background_image: "https://freguesiacult.com.br/wp-content/uploads/restaurante-750x563.jpeg",
+      //     reviews: 2,
+      //     cuisines: ['Italiana', 'Japonesa', 'Drinks', 'Pizza']
+      //   },
+      //   {
+      //     id: 2,
+      //     name: "Piqueta",
+      //     background_image: "",
+      //     address: "rua bouleaaaaaaaaaaaa 12 sssbardc",
+      //     reviews: 2,
+      //     cuisines: ['Hamburguér', 'Drinks', 'Pizza']
+      //   },
+      //   {
+      //     id: 3,
+      //     name: "Piqueta",
+      //     address: "rua boulebardceeee eeeee",
+      //     reviews: 2,
+      //     background_image: "",
+      //     cuisines: ['Bolos', 'Drinks', 'Pizza']
+      //   },
+      //   {
+      //     id: 4,
+      //     name: "Piqueta sj djj eyy",
+      //     address: "rua boulebardc",
+      //     background_image: "",
+      //     reviews: 2,
+      //     cuisines: ['Drinks', 'Pizza']
+      //   },
+      //   {
+      //     id: 5,
+      //     name: "Piqueta",
+      //     address: "rua boulebardc",
+      //     background_image: "https://img.restaurantguru.com/w550/h367/ra36-pizza-Sweet-pizza-val-2023-01.jpg",
+      //     reviews: 2,
+      //     cuisines: ['Doces', 'Pizza']
+      //   },
+      //   {
+      //     id: 6,
+      //     name: "Pecorino",
+      //     reviews: 2,
+      //     address: "rua boulebardc",
+      //     background_image: "",
+      //     cuisines: ['Pizza']
+      //   },
+      //   {
+      //     id: 7,
+      //     name: "Pecorino",
+      //     reviews: 212,
+      //     address: "rua boulebardc",
+      //     background_image: "https://freguesiacult.com.br/wp-content/uploads/restaurante-750x563.jpeg",
+      //     cuisines: ['Pizza']
+      //   }
+      // ];
+
+      // const allCuisines: string[] = [
+      //   'Pizza',
+      //   'Pidamio',
+      //   'Italiana',
+      //   'Francesa',
+      //   'Japonesa',
+      //   'Chinesa',
+      //   'Árabe',
+      //   'Hambúrguer',
+      //   'Cafeteria',
+      //   'Contemporânea',
+      //   'Confeitaria'
+      // ]
     };
 
     fetchRestaurants();
   }, []);
 
-  const handleSelectChange = (selectedOption: any) => {
+  const handleSelectChange = async (selectedOption: any) => {
     if (selectedOption) {
         const restaurant = restaurants.find(r => r.name === selectedOption.value);
         if (restaurant) {
@@ -113,7 +128,9 @@ const RestaurantForm: React.FC<{ onSubmit: (data: Restaurant) => void }> = ({ on
           setName(restaurant.name);
           setaddress(restaurant.address);
           setImageUrl(restaurant.background_image);
-          setCuisines(restaurant.cuisines.map(c => ({ id: c, text: c })));
+          const findRestaurantCuisines = await fetch(`${import.meta.env.VITE_API_BASE_URL}/restaurant_cuisines/${restaurant.id}`);
+          const restaurantCuisines = await findRestaurantCuisines.json();
+          setCuisines(restaurantCuisines.map((c: String) => ({ id: c, text: c })));
         } else {
           setSelectedRestaurant(null);
           setName(selectedOption.value);

@@ -1,5 +1,7 @@
 import React, { useState, useCallback } from 'react';
 import { format } from 'date-fns';
+import MaskedInput from 'react-text-mask'
+import createNumberMask from 'text-mask-addons/dist/createNumberMask'
 import { DayPicker } from 'react-day-picker';
 import { Review, ItemBill} from '../interfaces/ReviewInterface'
 import { ptBR } from 'date-fns/locale';
@@ -17,7 +19,7 @@ const ReviewForm: React.FC<{ onSubmit: (data: Review) => void }> = ({ onSubmit }
     const [visitDate, setVisitDate] = useState<Date>();
     const [imagePreview, setImagePreview] = useState<Array<string | ArrayBuffer | null>>([]);
     const [toastVisible, setToastVisible] = useState(false);
-    const [bill, setBill] = useState<Array<ItemBill>>([]);
+    const [bill, setBill] = useState<ItemBill[]>([{ item_description: "", amount: 1, price: 0 }]);
     const [files, setFiles] = useState<Array<string>>([]);
 
   const onDrop = useCallback((acceptedFiles: Array<File>) => {
@@ -33,10 +35,51 @@ const ReviewForm: React.FC<{ onSubmit: (data: Review) => void }> = ({ onSubmit }
       });
     }, []);
 
-  const {acceptedFiles, getRootProps, getInputProps, isDragActive} = useDropzone({onDrop})
+    const {acceptedFiles, getRootProps, getInputProps, isDragActive} = useDropzone({onDrop})
 
+	const handleBillChange = (index: number, event: React.ChangeEvent<HTMLInputElement>) => {
+		const values = [...bill];
+		const name = event.target.name as keyof ItemBill;
+		let value = event.target.value;
+		if (name === "amount") {
+			value = value.replace(/[^0-9]/g, '');
+			if (value.length > 2) {
+				value = value.slice(0, 2);
+			}
+			values[index][name] = Number(value) as never;
+		} else {
+			values[index][name] = value as never;
+		}
+		setBill(values);
+	};
 
-  const handleSubmit = async (event: React.FormEvent) => {
+	const defaultMaskOptions = {
+		prefix: 'R$',
+		suffix: '',
+		includeThousandsSeparator: true,
+		thousandsSeparatorSymbol: '.',
+		allowDecimal: true,
+		decimalSymbol: ',',
+		decimalLimit: 2,
+		integerLimit: 7,
+		allowNegative: false,
+		allowLeadingZeroes: false,
+	}
+	const currencyMask = createNumberMask(defaultMaskOptions)
+
+	const addBillItem = (event: React.FormEvent) => {
+        event?.preventDefault()
+		setBill([...bill, { item_description: "", amount: 1, price: 0 }]);
+	};
+
+	const handlePriceChange = (index: number, value: string) => {
+		const values = [...bill];
+		const numericValue = value.replace('R$', '').replace(',', '.');
+		values[index].price = Number(numericValue);
+		setBill(values);
+	};
+
+    const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
 
     for (let file of acceptedFiles) {
@@ -50,7 +93,6 @@ const ReviewForm: React.FC<{ onSubmit: (data: Review) => void }> = ({ onSubmit }
                 method: 'POST',
                 body: formData
             }).then(r => r.json());
-            // console.log("00000      ",uploadResults);
             files.push(uploadResults.secure_url)
           } catch (error) {
             console.error('Erro ao salvar imagens', error);
@@ -62,13 +104,14 @@ const ReviewForm: React.FC<{ onSubmit: (data: Review) => void }> = ({ onSubmit }
     if (visitDate !== undefined){
         formatedDate = visitDate.toISOString();
     }
-    const newReview: Review = { pseudonym, rating, comment, visit_date: formatedDate, images: files};
+    const newReview: Review = { pseudonym, rating, comment, visit_date: formatedDate, images: files, bill};
     setPseudonym('');
     setRating(0);
     setComment('');
     setVisitDate(new Date());
     setToastVisible(true);
     setImagePreview([])
+    setBill([{ item_description: "", amount: 1, price: 0 }])
     onSubmit(newReview);
   };
 
@@ -109,7 +152,7 @@ const ReviewForm: React.FC<{ onSubmit: (data: Review) => void }> = ({ onSubmit }
                         footer={calendarFooter}
                         disabled={{ after: new Date() }}
                         locale={ptBR}
-                    />
+						/>
                 </label>
             </div>
             <div className='col-3'>
@@ -120,9 +163,9 @@ const ReviewForm: React.FC<{ onSubmit: (data: Review) => void }> = ({ onSubmit }
                         name="image"
                         multiple
                         accept='image/png, image/jpg'
-                    />
+						/>
                         {
-                            isDragActive ?
+							isDragActive ?
                             <p>Arraste algumas fotos pra cá...</p> :
                             <p>Arraste ou clique aqui para adicionar as fotos da visita.</p>
                         }
@@ -138,6 +181,37 @@ const ReviewForm: React.FC<{ onSubmit: (data: Review) => void }> = ({ onSubmit }
                 <label>
                     <textarea value={comment} required onChange={(e) => setComment(e.target.value)} placeholder="Como foi sua visita?" />
                 </label>
+            	<div className='col-bill-itens'>
+					<h2>Descreva os itens desse pedido:</h2>
+					{bill.map((item, index) => (
+    					<div key={index}>
+                            <label ><strong>Qual item você pediu?</strong></label>
+        					<input
+            					type="text"
+            					name="item_description"
+            					value={item.item_description}
+            					onChange={event => handleBillChange(index, event)}
+            					placeholder="Descrição do item"
+        					/>
+                            <label ><strong>Quantidade do mesmo item:</strong></label>
+        					<input
+            					type="text"
+            					name="amount"
+            					value={item.amount.toString()}
+            					onChange={event => handleBillChange(index, event)}
+            					placeholder="Quantidade"
+        					/>
+            				<label ><strong>Preço Unitário:</strong></label>
+        					<MaskedInput
+            					mask={currencyMask}
+            					value={`R$ ${item.price.toFixed(2).replace('.', ',')}`}
+            					onChange={event => handlePriceChange(index, event.target.value)}
+            					placeholder="Preço Unitário"
+        					/>
+    					</div>
+					))}
+					<button className='add-item' onClick={addBillItem}>Adicionar mais um item</button>
+            	</div>
                 <button className='add-review' type="submit">Adicionar comentário</button>
             </div>
         </form>

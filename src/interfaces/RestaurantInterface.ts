@@ -3,8 +3,15 @@ export interface Restaurant{
   name: string;
   background_image: string;
   address: string;
-  cuisines: string[];
+  cuisines?: string[];
   reviews?: number;
+}
+
+export interface Cuisine{
+  id: number;
+  cuisine_name: string;
+  created_at: string;
+  updated_at: string;
 }
 
 export interface RestaurantCardProps {
@@ -13,7 +20,7 @@ export interface RestaurantCardProps {
       name: string;
       background_image: string;
       address: string;
-      cuisines: string[];
+      // cuisines: string[];
       reviews?: number;
     }
 }

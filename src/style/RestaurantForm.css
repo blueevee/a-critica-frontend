@@ -25,6 +25,7 @@
 }
 
 .new-restaurant input{
+    padding-left: .5em;
     min-width: 30em;
     margin-bottom: 1%;
     width: 100%;

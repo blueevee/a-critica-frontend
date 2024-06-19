@@ -15,20 +15,20 @@ const AddReview: React.FC = () => {
   const [toastVisible, setToastVisible] = useState(false);
   const [IncompleteDataToastVisible, setIncompleteDataToastVisible] = useState(false);
   const [PostErrrorToastVisible, setPostErrrorToastVisible] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleRestaurantSubmit = (restaurant: Restaurant) => {
 
     setRestaurant(restaurant);
-    // console.log("ADD RESTAURANNTTT")
   };
 
   const handleReviewSubmit = (review: Review) => {
     setReviews([...reviews, review]);
-    // console.log("ADD REVIEWW")
   };
 
   const handleSubmit = () => {
     if (restaurant && reviews.length > 0) {
+      setIsLoading(true);
       const review: ReviewProps = {
         restaurant: restaurant,
         reviews: reviews,
@@ -37,19 +37,13 @@ const AddReview: React.FC = () => {
       console.log("REVIEW PARA ENVIAR AO BACK", review)
       axios.post(`${import.meta.env.VITE_API_BASE_URL}/new_review`, review)
         .then(() => {
-          console.log("ENVIOUUU");
           setToastVisible(true);
         })
         .catch((error) => {
           console.error('ERROOOO:', error);
           setPostErrrorToastVisible(true);
         });
-      // try{
-        // await axios.post(`${import.meta.env.VITE_API_BASE_URL}/new_review`, review);
-      // }catch(error){
-        // console.log("ERROOOO", error)
-
-      // }
+        setIsLoading(false);
     } else{
       setIncompleteDataToastVisible(true);
     }
@@ -71,16 +65,20 @@ const AddReview: React.FC = () => {
                 className='toast--red'
             />
         <Toast
-                message="Você deve preencher no mínimo 1 comentário por restaurante confirmado."
+                message="Você confirmar um restaurante e preencher pelo menos 1 comentário."
                 isVisible={IncompleteDataToastVisible}
                 hideToast={() => setIncompleteDataToastVisible(false)}
-                className='toast--red'
+                className='toast--yellow'
             />
-        <RestaurantForm onSubmit={handleRestaurantSubmit}/>
-        <ReviewForm onSubmit={handleReviewSubmit}/>
-        <button onClick={handleSubmit} className='submit-button'>
-          Finalizar avaliação
-        </button>
+            <RestaurantForm onSubmit={handleRestaurantSubmit}/>
+            {isLoading ? (
+                <div className="loader"></div>
+              ) :(
+                <ReviewForm onSubmit={handleReviewSubmit}/>
+              )}
+                <button onClick={handleSubmit} className='submit-button'>
+                  Finalizar avaliação
+                </button>
         </div>
     );
   };
