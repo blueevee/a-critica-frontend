@@ -19,8 +19,8 @@ const RestaurantsList: React.FC = () => {
           setRestaurants(response.data)
           setIsLoading(false);
         })
-        .catch((error) => {
-          console.log(error);
+        .catch(() => {
+          console.log('ERRO: Não consegui trazer todos os restaurantes 😭😭😭');
         });
     }, []);
 
@@ -33,9 +33,9 @@ const RestaurantsList: React.FC = () => {
                 <div className="loader"></div>
               ) : (
                 restaurants.filter(restaurant => restaurant.name.toLowerCase().includes(searchTerm.toLowerCase())).map((restaurant: Restaurant) => (
-                  <Link to={`/restaurant/${restaurant.id}`}>
+                  <Link key={restaurant.id} to={`/restaurant/${restaurant.id}`}>
                     <RestaurantCard
-                      key={restaurant.id} restaurant={restaurant}/>
+                       restaurant={restaurant}/>
                   </Link>
                 ))
               )}
