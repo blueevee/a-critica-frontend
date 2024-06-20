@@ -1,42 +1,25 @@
 import React from 'react'
-import '../style/Home.css'
 import '../style/About.css'
-import leosam from '../assets/sam-1.png';
-import mafsam from '../assets/sam-2.png';
-import pbsam from '../assets/sam-3.png';
-import smilesam from '../assets/sam-4.png';
 
 const About: React.FC = () => {
     return (
-      <div>
-        <h1>Sobre Camosam!</h1>
+      <div className="about-container">
+        <h1>A crítica!</h1>
         <div className='about-content'>
-          <div className='about-col-1'>
-            <h2>O que é Camosam?</h2>
-            <p>Eu sou o pequeno Sam, e no dia 22 de setembro de 2024, vou ficar um aninho mais velho, camosam é o nome dessa comemoração!
+            <p>Se há algo que eu e meu digníssimo adoramos fazer, é sair para comer e avaliar como se fôssemos grandes e renomados sommeliers de gastronomia. Para nossos amigos, parece que realmente somos, pois volta e meia nos consultam como referência sobre os melhores lugares para comer e tipos de comida.
             <br/>
-            A minha festinha vai ser incrível, e o tema é todo sobre animais do bosque. Vai ser demais!
-            Sabe, meus papais disseram que vão viajar de avião para comemorar comigo. Mas, como não dá para levar muitos presentes no aviãozinho, a gente teve uma ideia super legal! 🎉
             <br/>
-            Então, olha só: em vez de trazerem presentes físicos, que tal me darem um dinheirinho?
+            Um belo dia, durante um almoço no Pecorino, enquanto conversávamos e avaliávamos a comida, meu querido me provocou: 🤔<span>"Por que não fazemos nosso próprio blog para anotar nossas avaliações e enviar para nossos amigos?" </span>🤔
             <br/>
-            É verdade, meu pai não tem um avião só dele, então não dá para lotar de presentes. 😄 Mas, com o dinheiro, a gente vai poder escolher coisas bem legais quando chegarmos lá!
+            <br/>
+            Então, resolvi transformar essa provocação em realidade e cá está nosso blog pessoal de críticas gastronômicas e acervo das nossas visitas culinárias.
+            <br/>
+            <br/>
+            <strong>
+            Sejam bem-vindos, amigos e conhecidos! Espero que nossos comentários sejam úteis para vocês!
+            </strong>
             </p>
-            <div className='photos'>
-              <img className='col1-sam' src={smilesam}/>
-              <img className='col1-sam' src={mafsam}/>
-              <img className='col1-sam' src={pbsam}/>
-            </div>
-          </div>
-          <div className='about-col-2'>
-            <img className='leo-sam' src={leosam}/>
-            <p>Estou tão animado para a camosam! Mal posso esperar para brincar, comer bolo e me divertir muito com todos vocês. Vocês vão, né? Ah, eu vou amar cada dinheirinho que ganhar, e meus papais vão ajudar a cuidar de tudo!
-            <br/>
-            Obrigado desde já pelo carinho, e até lá, pessoal!
-            <br/>
-            Beijinhos do pequeno Sam 🎂✈️🎈</p>
-          </div>
-      </div>
+        </div>
       </div>
     );
   };
