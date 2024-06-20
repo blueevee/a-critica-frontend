@@ -31,8 +31,8 @@ const RestaurantForm: React.FC<{ onSubmit: (data: Restaurant) => void }> = ({ on
         .then((response) => {
           setRestaurants(response.data)
         })
-        .catch((error) => {
-          console.log(error);
+        .catch(() => {
+          console.log('ERRO: Não consegui trazer as informações dos restaurantes cadastrados 😭😭😭');
         });
 
       axios
@@ -40,81 +40,9 @@ const RestaurantForm: React.FC<{ onSubmit: (data: Restaurant) => void }> = ({ on
         .then((response) => {
           setAllCuisines(response.data.map((cuisine: Cuisine) => (cuisine.cuisine_name)))
         })
-        .catch((error) => {
-          console.log(error);
+        .catch(() => {
+          console.log('ERRO: Não consegui trazer as categorias do restaurantes 😭😭😭');
         });
-      // const data: Restaurant[] = [
-      //   {
-      //     id: 1,
-      //     name: "Piqueta de cartoe ke",
-      //     address: "rua boulebardc aaaaaaaa aaaaaaaaaa aaaaaaaaa aaaaaaa aaaaaaaaaa aaaaaaa",
-      //     background_image: "https://freguesiacult.com.br/wp-content/uploads/restaurante-750x563.jpeg",
-      //     reviews: 2,
-      //     cuisines: ['Italiana', 'Japonesa', 'Drinks', 'Pizza']
-      //   },
-      //   {
-      //     id: 2,
-      //     name: "Piqueta",
-      //     background_image: "",
-      //     address: "rua bouleaaaaaaaaaaaa 12 sssbardc",
-      //     reviews: 2,
-      //     cuisines: ['Hamburguér', 'Drinks', 'Pizza']
-      //   },
-      //   {
-      //     id: 3,
-      //     name: "Piqueta",
-      //     address: "rua boulebardceeee eeeee",
-      //     reviews: 2,
-      //     background_image: "",
-      //     cuisines: ['Bolos', 'Drinks', 'Pizza']
-      //   },
-      //   {
-      //     id: 4,
-      //     name: "Piqueta sj djj eyy",
-      //     address: "rua boulebardc",
-      //     background_image: "",
-      //     reviews: 2,
-      //     cuisines: ['Drinks', 'Pizza']
-      //   },
-      //   {
-      //     id: 5,
-      //     name: "Piqueta",
-      //     address: "rua boulebardc",
-      //     background_image: "https://img.restaurantguru.com/w550/h367/ra36-pizza-Sweet-pizza-val-2023-01.jpg",
-      //     reviews: 2,
-      //     cuisines: ['Doces', 'Pizza']
-      //   },
-      //   {
-      //     id: 6,
-      //     name: "Pecorino",
-      //     reviews: 2,
-      //     address: "rua boulebardc",
-      //     background_image: "",
-      //     cuisines: ['Pizza']
-      //   },
-      //   {
-      //     id: 7,
-      //     name: "Pecorino",
-      //     reviews: 212,
-      //     address: "rua boulebardc",
-      //     background_image: "https://freguesiacult.com.br/wp-content/uploads/restaurante-750x563.jpeg",
-      //     cuisines: ['Pizza']
-      //   }
-      // ];
-
-      // const allCuisines: string[] = [
-      //   'Pizza',
-      //   'Pidamio',
-      //   'Italiana',
-      //   'Francesa',
-      //   'Japonesa',
-      //   'Chinesa',
-      //   'Árabe',
-      //   'Hambúrguer',
-      //   'Cafeteria',
-      //   'Contemporânea',
-      //   'Confeitaria'
-      // ]
     };
 
     fetchRestaurants();
@@ -148,7 +76,7 @@ const RestaurantForm: React.FC<{ onSubmit: (data: Restaurant) => void }> = ({ on
   };
 
   const handleDeleteTag = (i: number) => {
-    setCuisines(cuisines.filter((tag, index) => index !== i));
+    setCuisines(cuisines.filter((_, index) => index !== i));
   };
 
   const handleAddTag = (tag: { id: string; text: string }) => {
@@ -162,7 +90,7 @@ const RestaurantForm: React.FC<{ onSubmit: (data: Restaurant) => void }> = ({ on
   const handleSubmit = (event: React.FormEvent) => {
     event.preventDefault();
     onSubmit({
-      id: selectedRestaurant ? selectedRestaurant.id : null,
+      id: selectedRestaurant ? selectedRestaurant.id : 0,
       name,
       address,
       background_image: imageUrl,

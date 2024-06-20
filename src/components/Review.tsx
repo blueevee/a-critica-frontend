@@ -1,5 +1,4 @@
 import React, {useState} from 'react';
-// import axios from 'axios';
 import {ReviewInterface} from '../interfaces/ReviewInterface'
 import StarRating from './StarRating';
 import Modal from 'react-modal';
@@ -25,7 +24,7 @@ const Review: React.FC<ReviewInterface> = ({review}) => {
     return (
         <div className='review-card'>
             <div className='review-col-1'>
-                <h3>{review.username}</h3>
+                <h3>{review.pseudonym}</h3>
                 <p>{new Date(review.visit_date).toLocaleDateString('pt-BR')}</p>
             </div>
             <div className='review-col-2'>
@@ -44,8 +43,8 @@ const Review: React.FC<ReviewInterface> = ({review}) => {
                             {review.bill?.map((item, index) => (
                                 <tr key={index}>
                                     <td>{item.amount} x</td>
-                                    <td>{item.item}</td>
-                                    <td>R${item.price}</td>
+                                    <td>{item.item_description}</td>
+                                    <td>{item.price.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</td>
                                 </tr>
                             ))}
                         </tbody>
