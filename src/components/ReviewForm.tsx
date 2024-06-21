@@ -20,7 +20,7 @@ const ReviewForm: React.FC<{ onSubmit: (data: Review) => void }> = ({ onSubmit }
     const [imagePreview, setImagePreview] = useState<Array<string | ArrayBuffer | null>>([]);
     const [toastVisible, setToastVisible] = useState(false);
     const [bill, setBill] = useState<ItemBill[]>([{ item_description: "", amount: 1, price: 0 }]);
-    const [files, setFiles] = useState<Array<string>>([]);
+    const [files] = useState<Array<string>>([]);
 
   const onDrop = useCallback((acceptedFiles: Array<File>) => {
     setImagePreview([])
