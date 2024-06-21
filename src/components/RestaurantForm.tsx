@@ -32,7 +32,7 @@ const RestaurantForm: React.FC<{ onSubmit: (data: Restaurant) => void }> = ({ on
           setRestaurants(response.data)
         })
         .catch(() => {
-          console.log('ERRO: Não consegui trazer as informações dos restaurantes cadastrados 😭😭😭');
+          console.error('ERRO: Não consegui trazer as informações dos restaurantes cadastrados 😭😭😭');
         });
 
       axios
@@ -41,7 +41,7 @@ const RestaurantForm: React.FC<{ onSubmit: (data: Restaurant) => void }> = ({ on
           setAllCuisines(response.data.map((cuisine: Cuisine) => (cuisine.cuisine_name)))
         })
         .catch(() => {
-          console.log('ERRO: Não consegui trazer as categorias do restaurantes 😭😭😭');
+          console.error('ERRO: Não consegui trazer as categorias do restaurantes 😭😭😭');
         });
     };
 

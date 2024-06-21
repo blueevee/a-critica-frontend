@@ -20,7 +20,7 @@ const RestaurantsList: React.FC = () => {
           setIsLoading(false);
         })
         .catch(() => {
-          console.log('ERRO: Não consegui trazer todos os restaurantes 😭😭😭');
+          console.error('ERRO: Não consegui trazer todos os restaurantes 😭😭😭');
         });
     }, []);
 

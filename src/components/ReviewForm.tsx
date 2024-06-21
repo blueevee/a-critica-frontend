@@ -95,7 +95,7 @@ const ReviewForm: React.FC<{ onSubmit: (data: Review) => void }> = ({ onSubmit }
             }).then(r => r.json());
             files.push(uploadResults.secure_url)
           } catch (error) {
-            console.error('Erro ao salvar imagens', error);
+            console.error('ERRO: Não consegui salvar suas fotos desse comentário 😭😭', error);
           }
 
     }

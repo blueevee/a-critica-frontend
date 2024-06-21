@@ -22,7 +22,7 @@ const CardDetails: React.FC = () => {
         })
         .catch(() => {
           setIsLoading(false);
-          console.log('ERRO: Não consegui trazer as informações desse restaurante 😭😭😭');
+          console.error('ERRO: Não consegui trazer as informações desse restaurante 😭😭😭');
         });
 
         axios
@@ -31,7 +31,7 @@ const CardDetails: React.FC = () => {
           setRestaurantCuisines(response.data)
         })
         .catch(() => {
-          console.log('ERRO: Não consegui trazer as categorias desse restaurante 😭😭😭');
+          console.error('ERRO: Não consegui trazer as categorias desse restaurante 😭😭😭');
         });
     };
 

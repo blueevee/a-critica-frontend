@@ -6,7 +6,7 @@ import RestaurantForm from '../components/RestaurantForm'
 import { Toast } from '../components/Toast';
 import ReviewForm from '../components/ReviewForm';
 import '../style/AddReviewForm.css'
-
+import { useNavigate } from 'react-router-dom';
 
 const AddReview: React.FC = () => {
 
@@ -16,6 +16,22 @@ const AddReview: React.FC = () => {
   const [IncompleteDataToastVisible, setIncompleteDataToastVisible] = useState(false);
   const [PostErrrorToastVisible, setPostErrrorToastVisible] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const navigate = useNavigate();
+
+
+  const handleLogout = async () => {
+    try {
+      const response = await axios.delete(`${import.meta.env.VITE_API_BASE_URL}/logout`);
+      if (response.status === 200) {
+        localStorage.removeItem('token');
+        navigate('/login');
+      } else {
+        console.error('ERRO: Não consegui encerrar sua sessão 😭😭');
+      }
+    } catch (error) {
+      console.error('ERRO: ocorreu um erro ao encerrar sua sessão 😭😭', error);
+    }
+  };
 
   const handleRestaurantSubmit = (restaurant: Restaurant) => {
 
@@ -33,14 +49,12 @@ const AddReview: React.FC = () => {
         restaurant: restaurant,
         reviews: reviews,
       }
-      console.log(`URL DO BACK:    ${import.meta.env.VITE_API_BASE_URL}/new_review`)
-      console.log("REVIEW PARA ENVIAR AO BACK", review)
       axios.post(`${import.meta.env.VITE_API_BASE_URL}/new_review`, review)
         .then(() => {
           setToastVisible(true);
         })
-        .catch((error) => {
-          console.error('ERROOOO:', error);
+        .catch(() => {
+          console.error('ERRO: Não consegui enviar a avaliação 😭😭😭');
           setPostErrrorToastVisible(true);
         });
         setIsLoading(false);
@@ -52,6 +66,7 @@ const AddReview: React.FC = () => {
 
   return (
       <div>
+        <button onClick={handleLogout} className='logout-button'>Encerrar sessão</button>
         <Toast
                 message="Avaliação adicionada com sucesso!"
                 isVisible={toastVisible}

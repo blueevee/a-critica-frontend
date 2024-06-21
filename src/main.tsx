@@ -6,6 +6,8 @@ import About from './routes/About.tsx'
 import ErrorPage from './routes/ErrorPage.tsx'
 import App from './App.tsx'
 import CardDetails from './routes/CardDetails.tsx'
+import LoginPage from './routes/LoginPage.tsx'
+import ProtectedRoute from './routes/ProtectedRoute.tsx'
 
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 
@@ -20,8 +22,12 @@ const router = createBrowserRouter([
         element: <Home/>
       },
       {
+        path: '/login',
+        element: <LoginPage/>
+      },
+      {
         path: '/add',
-        element: <AddReview/>
+        element: <ProtectedRoute component={AddReview}/>
       },
       {
         path: 'about',
