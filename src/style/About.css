@@ -21,3 +21,11 @@
     font-style: italic;
     background-color: rgba(105, 54, 7, 0.164);
 }
+
+
+@media (max-width: 600px) {
+    .about-content{
+        width: 90%;
+        font-size: 1em;
+    }
+}

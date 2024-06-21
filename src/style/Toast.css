@@ -20,3 +20,16 @@
 .toast--red{
     background-color: #722320b7;
 }
+
+@media (max-width: 600px) {
+
+    .toast{
+        top: 18em;
+        right: 0;
+        left: 0;
+        margin: auto;
+        text-align: center;
+        width: 15em;
+        font-size: .8em;
+    }
+}

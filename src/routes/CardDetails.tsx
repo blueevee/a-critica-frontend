@@ -39,15 +39,11 @@ const CardDetails: React.FC = () => {
   }, []);
 
   if (isLoading) {
-    return <div style={{
-      marginLeft: '25%'
-    }} className="loader"></div>;
+    return <div className="loader"></div>;
   }
 
   if (!restaurantReview?.restaurant.id) {
-    return <h2 style={{
-      marginLeft: '25%'
-    }}>Ocorreu um erro ao buscar esse restaurante...</h2>;
+    return <h2>Ocorreu um erro ao buscar esse restaurante...</h2>;
   }
 
   return (

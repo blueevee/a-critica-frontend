@@ -78,7 +78,7 @@
     margin-left: 50%;
 }
 
-.add-item:hover, .add-item:focus {
+.add-item:hover {
     background: #503720;
   }
 

@@ -4,6 +4,7 @@ import RestaurantCard from '../components/RestaurantCard'
 import SearchBar from '../components/SearchBar'
 import { Restaurant} from '../interfaces/RestaurantInterface'
 import { Link } from 'react-router-dom';
+import { Toast } from '../components/Toast';
 import '../style/Home.css'
 
 
@@ -11,6 +12,7 @@ const RestaurantsList: React.FC = () => {
   	const [searchTerm, setSearchTerm] = useState('');
     const [restaurants, setRestaurants] = useState<Restaurant[]>([]);
     const [isLoading, setIsLoading] = useState(true);
+    const [postErrrorToastVisible, setPostErrrorToastVisible] = useState(false);
 
     useEffect(() => {
       axios
@@ -21,12 +23,19 @@ const RestaurantsList: React.FC = () => {
         })
         .catch(() => {
           console.error('ERRO: Não consegui trazer todos os restaurantes 😭😭😭');
+          setPostErrrorToastVisible(true);
         });
     }, []);
 
     return (
         <div className="page-content">
           <h1>Restaurantes avaliados</h1>
+          <Toast
+                message="Ocorreu um erro ao buscar os restaurantes."
+                isVisible={postErrrorToastVisible}
+                hideToast={() => setPostErrrorToastVisible(false)}
+                className='toast--red'
+            />
           <SearchBar onSearch={setSearchTerm} />
             <div  className="restaurants-list">
             {isLoading ? (

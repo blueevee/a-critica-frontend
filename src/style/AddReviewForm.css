@@ -19,6 +19,6 @@
     margin-right: 25%;
 }
 
-.submit-button:hover, .submit-button:active, .submit-button:focus {
+.submit-button:hover {
     background: #503720;
   }

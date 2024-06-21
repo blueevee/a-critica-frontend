@@ -5,7 +5,6 @@ body{
   color: #755036;
 }
 
-
 .restaurants-list {
   display: flex;
   flex-wrap: wrap;
@@ -43,3 +42,37 @@ h1{
   100% { transform: rotate(360deg); }
 }
 
+
+@media (max-width: 600px) {
+  body {
+    overflow-x: hidden;
+  }
+  .app > div:nth-of-type(2){
+    display: flex;
+    flex-direction: column;
+  }
+
+  h1{
+  font-size: 1.5em;
+  }
+
+  .page-content{
+    padding: .5em;
+  }
+
+  .restaurants-list {
+    align-items: center;
+    justify-content: center;
+  }
+  .restaurants-list a{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    width: 70%;
+  }
+
+  .loader{
+    width: 60px;
+    height: 60px;
+  }
+}

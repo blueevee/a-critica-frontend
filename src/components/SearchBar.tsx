@@ -14,7 +14,7 @@ const SearchBar: FC<SearchProps> = ({ onSearch }) => {
         <form className='search-restaurants'>
             <input
                 type="text"
-                placeholder="Digite o nome do restaurante para ver as avaliações..."
+                placeholder="Pesquise um restaurante"
                 onChange={handleChange}
             />
         </form>

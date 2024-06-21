@@ -50,3 +50,31 @@ div.header-logo img{
     cursor: pointer;
     color: #6E6D35;
 }
+
+
+@media (max-width: 600px) {
+    .header {
+        flex-direction: column;
+        align-items: center;
+    }
+    div.header-logo img{
+        height: 7em;
+    }
+    .header-decor img{
+        margin-top: 2%;
+        height: 3em;
+    }
+    .pages {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .void {
+        height: 1em;
+    }
+
+    .line {
+        margin: 1%;
+        width: 80%;
+    }
+}

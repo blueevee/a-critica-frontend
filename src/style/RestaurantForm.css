@@ -121,6 +121,6 @@
     margin-top: 1em;
 }
 
-.restaurant-form .submit-restaurant:hover, .restaurant-form .submit-restaurant:active, .restaurant-form .submit-restaurant:focus {
+.restaurant-form .submit-restaurant:hover{
     background: #503720;
   }
