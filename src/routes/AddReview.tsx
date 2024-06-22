@@ -65,8 +65,8 @@ const AddReview: React.FC = () => {
   };
 
   return (
-      <div>
-        <button onClick={handleLogout} className='logout-button'>Encerrar sessão</button>
+      <div className='add-review-content'>
+        <button onClick={handleLogout} className='logout-button'>sair</button>
         <Toast
                 message="Avaliação adicionada com sucesso!"
                 isVisible={toastVisible}

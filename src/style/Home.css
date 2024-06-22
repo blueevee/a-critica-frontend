@@ -47,6 +47,7 @@ h1{
   body {
     overflow-x: hidden;
   }
+
   .app > div:nth-of-type(2){
     display: flex;
     flex-direction: column;
@@ -63,12 +64,13 @@ h1{
   .restaurants-list {
     align-items: center;
     justify-content: center;
+    width: 100vw;
   }
   .restaurants-list a{
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    width: 70%;
+    width: 95%;
   }
 
   .loader{

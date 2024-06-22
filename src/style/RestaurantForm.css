@@ -15,9 +15,7 @@
 }
 
 .new-restaurant{
-    /* max-width: 40em; */
     margin-left: 1em;
-    min-width: 35em;
     display: flex;
 	flex-direction: column;
 	flex-wrap: nowrap;
@@ -26,7 +24,6 @@
 
 .new-restaurant input{
     padding-left: .5em;
-    min-width: 30em;
     margin-bottom: 1%;
     width: 100%;
     height: 3em;
@@ -124,3 +121,45 @@
 .restaurant-form .submit-restaurant:hover{
     background: #503720;
   }
+
+@media (max-width: 600px) {
+    .restaurant-form{
+        display: flex;
+        flex-direction: column;
+        width: 90%;
+    }
+
+    .old-restaurant {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    .restaurants-select{
+        width: 50vw;
+    }
+    .new-restaurant input, .custom-tagInput input{
+        width: 70vw;
+        align-self: center;
+        font-size: .9em;
+    }
+    .custom-tagInput{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .restaurant-form .submit-restaurant:hover{
+        font-size: 10px;
+    }
+
+    .custom-tag{
+        font-size: .7em;
+        font-weight: normal;
+        letter-spacing: 0px;
+    }
+    .custom-remove{
+        font-weight: normal;
+        border-radius: 20px;
+    }
+
+}

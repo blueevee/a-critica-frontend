@@ -28,10 +28,9 @@
 @media (max-width: 600px) {
 
     .search-restaurants{
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        width: 50%;
+        align-self: center;
+        width: 60vw;
+        margin-left: 0;
     }
 
   }

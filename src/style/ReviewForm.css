@@ -1,3 +1,9 @@
+.review-form-content{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+}
 .sep-decor{
     padding-top: 2em;
     display: flex;
@@ -8,7 +14,7 @@
 
 .sep-line {
     background-color: #75503696;
-    width: 35em;
+    width: 45vw;
     height: 3px;
 }
 
@@ -17,7 +23,6 @@
 }
 
 .review-form{
-    /* background-color: aqua; */
     display: flex;
     justify-content: space-evenly;
     flex-wrap: wrap;
@@ -34,17 +39,17 @@
 .review-form .col-2{
     display: flex;
     flex-direction: column;
-    min-width: 30em;
+    min-width: 30vw;
     margin-right: 1em;
-    max-width: 60em;
+    max-width: 70vw;
 
 }
 
 .review-form .col-2 .col-bill-itens{
-    margin-left: 5em;
-    max-width: 30%;
     display: flex;
     flex-direction: column;
+    margin-left: 10vw;
+    max-width: 70%;
 
 }
 
@@ -52,7 +57,7 @@
     padding-left: 1em;
     margin-top: 1em;
     border: none;
-    max-width: 100%;
+    width: 100%;
     box-sizing: border-box !important;
     background-color: #c6a67f6e;
     color: #6d4c2d;
@@ -68,24 +73,25 @@
     min-width: 10em;
     text-transform: uppercase;
     font-size: .8em;
-    background: #79532f;
+    background: #c7884d;
     padding: .5em;
-    color: #cfc8a6;
+    color: #fff7ce;
     font-weight: bold;
     letter-spacing: 1px;
     border-radius: 5px;
     cursor: pointer;
+    align-self: flex-end;
     margin-left: 50%;
 }
 
-.add-item:hover {
+.review-form .col-2 .col-bill-itens .add-item:hover {
     background: #503720;
   }
 
 .review-form .col-2 input{
     padding-left: .5em;
     margin-top: 2em;
-    min-width: 30em;
+    min-width: 30vw;
     height: 3em;
     width: 100%;
     border: none;
@@ -196,3 +202,12 @@
     object-fit: cover;
     margin: 2px;
   }
+
+@media (max-width: 600px) {
+    .col-1{
+        width: 80vw;
+    }
+    .col-2{
+        width: 100%;
+    }
+}

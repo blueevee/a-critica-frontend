@@ -77,7 +77,7 @@
 
 @media (max-width: 600px) {
   .restaurant-card{
-    width: 75%;
+    width: 80%;
     margin-bottom: 1em;
   }
 
@@ -92,7 +92,7 @@
   }
 
   .restaurant-info p{
-    font-size: .7em;
+    font-size: .8em;
   }
 
 

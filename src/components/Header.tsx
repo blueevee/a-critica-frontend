@@ -7,7 +7,7 @@ import '../style/Header.css'
 
 const Header: React.FC = () => {
     return (
-        <div>
+        <div className='header-content'>
             <div className="header">
                 <div className='void'>
                 </div>

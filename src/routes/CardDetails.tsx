@@ -43,11 +43,11 @@ const CardDetails: React.FC = () => {
   }
 
   if (!restaurantReview?.restaurant.id) {
-    return <h2>Ocorreu um erro ao buscar esse restaurante...</h2>;
+    return <h2 className='empty-restaurant'>Ocorreu um erro ao buscar esse restaurante...</h2>;
   }
 
   return (
-    <div>
+    <div className='review-content'>
       <div className='restaurant-review-info' style={{
           backgroundImage: `url(${restaurantReview?.restaurant.background_image})`,
           backgroundSize: 'cover',
@@ -66,9 +66,7 @@ const CardDetails: React.FC = () => {
 
       </div>
       {restaurantReview?.reviews.length < 1 ? (
-                <h3 style={{
-                  marginLeft: '25%'
-                }}>Parece que esse restaurante ainda não possui comentários...</h3>
+                <h3 className='empty-comments'>Parece que esse restaurante ainda não possui comentários...</h3>
               ) : (
           <>
             {restaurantReview?.reviews.map((review: ReviewInterface) =>

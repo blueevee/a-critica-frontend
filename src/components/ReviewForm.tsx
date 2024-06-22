@@ -122,7 +122,7 @@ const ReviewForm: React.FC<{ onSubmit: (data: Review) => void }> = ({ onSubmit }
   }
 
   return (
-    <div>
+    <div className='review-form-content'>
         <Toast
                 message="Comentário adicionada com sucesso!"
                 isVisible={toastVisible}
@@ -212,7 +212,7 @@ const ReviewForm: React.FC<{ onSubmit: (data: Review) => void }> = ({ onSubmit }
 					))}
 					<button className='add-item' onClick={addBillItem}>Adicionar mais um item</button>
             	</div>
-                <button className='add-review' type="submit">Adicionar comentário</button>
+                <button className='add-review' type="submit">Enviar comentário</button>
             </div>
         </form>
     </div>
